@@ -1,0 +1,39 @@
+POST http://localhost:8800/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "test",
+    "email": "test@gmail.com",
+    "password": "123456",
+    "name": "Summer"
+}
+
+###
+POST http://localhost:8800/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "test5",
+    "password": "123456"
+}
+
+###
+POST http://localhost:8800/api/auth/logout
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "123456"
+}
+
+###
+GET http://localhost:8800/api/posts
+Content-Type: application/json
+
+###
+POST http://localhost:8800/api/posts
+Content-Type: application/json
+
+{
+    "desc": "post api"
+}
