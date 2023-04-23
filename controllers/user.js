@@ -9,8 +9,8 @@ const getUser = (req, res) => {
     try {
         db.query(q, [userId], (err, data) => {
             if (err) return res.status(500).json(err);
-            const { password, ...info } = data[0];
-            return res.json(info);
+            //const { password, ...info } = data[0];
+            return res.json(data[0]);
         });
     } catch (error) {
         return res.status(500).json("Server error !")
