@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken"
 
 const register = (req, res) => {
     //Check user if exists
-    const q = "SELECT * FROM users WHERE username = ?"
+    const q = "SELECT * FROM users WHERE email = ?"
 
-    db.query(q, [req.body.username], (err, data) => {
+    db.query(q, [req.body.email], (err, data) => {
         if(err){
             return res.status(500).json(err)
         }
@@ -19,9 +19,9 @@ const register = (req, res) => {
         const hashedPassword = bcrypt.hashSync(req.body.password, salt)
 
         //create user
-        const q = "INSERT INTO users (`username`, `email`, `password`, `name`) VALUE(?)"
+        const q = "INSERT INTO users (`email`, `password`, `name`) VALUE(?)"
 
-        const values = [req.body.username, req.body.email, hashedPassword, req.body.name]
+        const values = [req.body.email, hashedPassword, req.body.name]
         db.query(q, [values], (err,data)=>{
             if(err){
                 return res.status(500).json(err)
@@ -32,17 +32,17 @@ const register = (req, res) => {
 }
 
 const login = (req, res) => {
-    const q = "SELECT * FROM users WHERE username = ?"
+    const q = "SELECT * FROM users WHERE email = ?"
 
-    db.query(q, [req.body.username], (err, data) => {
+    db.query(q, [req.body.email], (err, data) => {
         if(err) return res.status(500).json(err);
         if(data.length === 0)
         {
-            return res.status(404).json("Username khong ton tai !");
+            return res.status(404).json("Email không tồn tại !");
         }
         const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
         if(!checkPassword){
-            return res.status(400).json("Ten dang nhap hoac mat khau khong chinh xac !")
+            return res.status(400).json("Tên đăng nhập hoặc mật khẩu không chính xác !")
         }
         const token = jwt.sign({
             id: data[0].id,
