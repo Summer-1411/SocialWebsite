@@ -9,8 +9,6 @@ import multer from "multer";
 import cookieParser from "cookie-parser";
 import relationshipRoute from "./routes/relationships.js";
 
-
-
 const app = express()
 
 
@@ -44,7 +42,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 
 
-
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
@@ -53,6 +50,6 @@ app.use("/api/comments", commentRoute)
 app.use("/api/relationships", relationshipRoute)
 
 
-app.listen(8800, () => {
+const server = app.listen(8800, () => {
     console.log("API Working in 8800");
 })
