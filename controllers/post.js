@@ -55,7 +55,7 @@ const getPosts = (req, res) => {
         
 
         console.log({userId});
-        console.log('re-render');
+        // console.log('re-render');
         db.query(q, values, (err, data) => {
             
 
@@ -87,7 +87,7 @@ const addPost = (req, res) => {
                 return res.status(500).json(err)
             }
             console.log({ data });
-            return res.status(200).json("Bài đăng đã được tạo.")
+            return res.status(200).json({message: "Bài đăng đã được tạo.", id: data.insertId})
         })
     })
 

@@ -8,6 +8,10 @@ import cors from "cors"
 import multer from "multer";
 import cookieParser from "cookie-parser";
 import relationshipRoute from "./routes/relationships.js";
+import chatRoute from "./routes/chat.js"
+import messageRoute from "./routes/message.js"
+import storyRoute from "./routes/story.js"
+
 
 const app = express()
 
@@ -48,6 +52,9 @@ app.use("/api/posts", postRoute)
 app.use("/api/likes", likeRoute)
 app.use("/api/comments", commentRoute)
 app.use("/api/relationships", relationshipRoute)
+app.use("/api/chats", chatRoute)
+app.use("/api/messages", messageRoute)
+app.use("/api/stories", storyRoute)
 
 
 const server = app.listen(8800, () => {
