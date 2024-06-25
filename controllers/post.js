@@ -1,6 +1,7 @@
-import jwt from "jsonwebtoken";
-import { db } from "../connect.js"
-import moment from "moment";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
+
 // const getPosts = (req, res) => {
 //     const token = req.cookies.accessToken;
 //     if(!token){
@@ -113,7 +114,7 @@ const deletePost = (req, res) => {
 
 
 
-export {
+module.exports = {
     getPosts,
     addPost,
     deletePost

@@ -1,9 +1,8 @@
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
-import moment from "moment";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
-
-export const getStory = (req, res) => {
+const getStory = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -23,7 +22,7 @@ export const getStory = (req, res) => {
     });
 };
 
-export const postStory = (req, res) => {
+const postStory = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -44,7 +43,7 @@ export const postStory = (req, res) => {
         });
     });
 };
-export const deleteStory = (req, res) => {
+const deleteStory = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -64,14 +63,22 @@ export const deleteStory = (req, res) => {
 };
 
 
-const autoDeleteStory = () => {
+const autoDeleteStory = async () => {
     const q = 'DELETE FROM stories WHERE createdAt < DATE_SUB(NOW(), INTERVAL 1 DAY)'
-    db.query(q, (err, data) => {
-        if (err) return res.status(500).json(err);
-        //console.log("123");
-        //return res.status(200).json({success: true, story: data});
-    });
+    // db.query(q, (err, data) => {
+    //     if (err) return res.status(500).json(err);
+    //     //console.log("123");
+    //     //return res.status(200).json({success: true, story: data});
+    // });
+    await db.execute(q)
 };
 
 
-setInterval(autoDeleteStory, 10 * 1000)
+setInterval(autoDeleteStory, 1000*60*60*12)
+
+module.exports = {
+    getStory,
+    deleteStory,
+    postStory,
+    autoDeleteStory
+}

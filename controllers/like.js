@@ -1,6 +1,6 @@
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
-import moment from "moment";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
 const getLikes = (req, res) => {
     const q = "SELECT userId FROM likes WHERE postId = ?";
@@ -50,7 +50,7 @@ const deleteLike = (req, res) => {
     });
 }
 
-export {
+module.exports = {
     getLikes,
     addLike,
     deleteLike

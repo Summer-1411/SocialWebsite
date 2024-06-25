@@ -1,6 +1,7 @@
 
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
 const getUser = (req, res) => {
     const userId = req.params.userId;
@@ -117,4 +118,4 @@ const getUserFollowed = (req, res) => {
     });
 };
 
-export { getUser,updateUser,getUserFollows, getUserFollowed,searchUser }
+module.exports = { getUser,updateUser,getUserFollows, getUserFollowed,searchUser }

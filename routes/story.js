@@ -1,5 +1,5 @@
-import express from "express";
-import { postStory, deleteStory, getStory } from "../controllers/story.js";
+const express =  require("express");
+const { postStory, deleteStory, getStory } = require("../controllers/story.js");
 
 const router = express.Router()
 
@@ -8,4 +8,4 @@ router.post("/", postStory)
 router.delete("/:id", deleteStory)
 
 
-export default router
+module.exports = router

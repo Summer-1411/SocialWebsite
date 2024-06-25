@@ -1,10 +1,9 @@
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
-import moment from "moment";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
 
-
-export const getMessage = (req, res) => {
+const getMessage = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -23,7 +22,7 @@ export const getMessage = (req, res) => {
     });
 };
 
-export const sendMessage = (req, res) => {
+const sendMessage = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -45,7 +44,7 @@ export const sendMessage = (req, res) => {
         });
     });
 };
-export const getMessageById = (req, res) => {
+const getMessageById = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -66,7 +65,7 @@ export const getMessageById = (req, res) => {
 
 
 
-export const deleteMessage = (req, res) => {
+const deleteMessage = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -82,3 +81,10 @@ export const deleteMessage = (req, res) => {
         });
     });
 };
+
+module.exports = {
+    deleteMessage,
+    getMessageById,
+    sendMessage,
+    getMessage
+}

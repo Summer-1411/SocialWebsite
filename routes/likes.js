@@ -1,9 +1,9 @@
-import  Express  from "express";
-import { getLikes, addLike, deleteLike } from "../controllers/like.js";
-const router = Express.Router()
+const express  =require("express");
+const  { getLikes, addLike, deleteLike } = require("../controllers/like.js");
+const router = express.Router()
 
 router.get("/", getLikes)
 router.post("/", addLike)
 router.delete("/", deleteLike)
 
-export default router
+module.exports = router

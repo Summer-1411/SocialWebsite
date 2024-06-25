@@ -1,5 +1,5 @@
-import express from "express";
-import { getMessage, sendMessage, deleteMessage, getMessageById } from "../controllers/message.js";
+const express  =require("express");
+const { getMessage, sendMessage, deleteMessage, getMessageById } = require("../controllers/message.js");
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.delete("/:id", deleteMessage);
 
 
 
-export default router
+module.exports = router

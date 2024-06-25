@@ -1,6 +1,7 @@
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
-import moment from "moment";
+
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
 //Lấy ra các đoạn chat của user theo id
 
@@ -11,7 +12,7 @@ import moment from "moment";
 // AND (`chats`.`user_id1` = 1 OR `chats`.`user_id2` = 1)
 
 //GET các đoạn chat
-export const getAllChats = (req, res) => {
+const getAllChats = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -36,7 +37,7 @@ export const getAllChats = (req, res) => {
     });
 };
 
-export const getMemberChat = (req, res) => {
+const getMemberChat = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -55,7 +56,7 @@ export const getMemberChat = (req, res) => {
 // }, 3000)
 
 
-export const findChat = (req, res) => {
+const findChat = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -71,7 +72,7 @@ export const findChat = (req, res) => {
     });
 };
 
-export const checkChatNoMessage = (req, res) => {
+const checkChatNoMessage = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -88,7 +89,7 @@ export const checkChatNoMessage = (req, res) => {
 };
 
 
-export const updateLastMessage = (req, res) => {
+const updateLastMessage = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -107,7 +108,7 @@ export const updateLastMessage = (req, res) => {
 };
 
 
-export const updateStatusChat = (req, res) => {
+const updateStatusChat = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -127,7 +128,7 @@ export const updateStatusChat = (req, res) => {
 
 
 
-export const createChat = (req, res) => {
+const createChat = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -148,3 +149,13 @@ export const createChat = (req, res) => {
         });
     });
 };
+
+module.exports = {
+    createChat,
+    updateStatusChat,
+    updateLastMessage,
+    checkChatNoMessage,
+    findChat,
+    getAllChats,
+    getMemberChat
+}

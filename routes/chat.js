@@ -1,5 +1,6 @@
-import express from "express";
-import { getAllChats,findChat, createChat,updateStatusChat,checkChatNoMessage, getMemberChat, updateLastMessage } from "../controllers/chats.js";
+const express = require('express')
+const { getAllChats,findChat, createChat,updateStatusChat,checkChatNoMessage, getMemberChat, updateLastMessage } = require('../controllers/chats.js')
+
 
 const router = express.Router();
 
@@ -12,4 +13,4 @@ router.put("/updateLastMessage/:id", updateLastMessage);
 router.post("/create", createChat);
 
 
-export default router
+module.exports = router

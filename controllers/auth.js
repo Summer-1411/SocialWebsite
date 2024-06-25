@@ -1,6 +1,7 @@
-import { db } from "../connect.js"
-import bcrypt from 'bcryptjs'
-import jwt from "jsonwebtoken"
+const bcrypt  =require("bcryptjs");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
+
 
 const register = (req, res) => {
     //Check user if exists
@@ -38,7 +39,7 @@ const login = (req, res) => {
         if(err) return res.status(500).json(err);
         if(data.length === 0)
         {
-            return res.status(404).json("Email không tồn tại !");
+            return res.status(400).json("Email không tồn tại !");
         }
         const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
         if(!checkPassword){
@@ -62,7 +63,7 @@ const logout = (req, res) => {
 }
 
 
-export {
+module.exports = {
     login,
     logout,
     register

@@ -1,7 +1,8 @@
-import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
+const moment  =require("moment");
+const jwt  =require("jsonwebtoken");
+const db = require('../connect.js')
 
-export const getRelationships = (req, res) => {
+const getRelationships = (req, res) => {
     const q = "SELECT followerUserId FROM relationships WHERE followedUserId = ?";
 
     db.query(q, [req.query.followedUserId], (err, data) => {
@@ -10,7 +11,7 @@ export const getRelationships = (req, res) => {
     });
 }
 
-export const addRelationship = (req, res) => {
+const addRelationship = (req, res) => {
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
 
@@ -30,7 +31,7 @@ export const addRelationship = (req, res) => {
     });
 };
 
-export const deleteRelationship = (req, res) => {
+const deleteRelationship = (req, res) => {
 
     const token = req.cookies.accessToken;
     if (!token) return res.status(401).json("Not logged in!");
@@ -46,3 +47,9 @@ export const deleteRelationship = (req, res) => {
         });
     });
 };
+
+module.exports = {
+    addRelationship,
+    deleteRelationship,
+    getRelationships
+}

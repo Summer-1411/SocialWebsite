@@ -1,4 +1,6 @@
-import mysql from "mysql"  
+
+const mysql = require('mysql');
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -7,4 +9,5 @@ const db = mysql.createConnection({
     database:"social"
 })
 
-export {db}
+
+module.exports = db;

@@ -1,16 +1,17 @@
-import express from "express";
-import userRoute from "./routes/users.js"
-import postRoute from './routes/posts.js'
-import likeRoute from './routes/likes.js'
-import commentRoute from './routes/comments.js'
-import authRoute from './routes/auth.js'
-import cors from "cors"
-import multer from "multer";
-import cookieParser from "cookie-parser";
-import relationshipRoute from "./routes/relationships.js";
-import chatRoute from "./routes/chat.js"
-import messageRoute from "./routes/message.js"
-import storyRoute from "./routes/story.js"
+const express  =require("express");
+const cors  =require("cors");
+const multer  =require("multer");
+const cookieParser  =require("cookie-parser");
+const userRoute = require("./routes/users.js")
+const postRoute = require("./routes/posts.js")
+const likeRoute = require("./routes/likes.js")
+const commentRoute = require("./routes/comments.js")
+const authRoute = require("./routes/auth.js")
+const relationshipRoute = require("./routes/relationships.js")
+const chatRoute = require("./routes/chat.js")
+const messageRoute = require("./routes/message.js")
+const storyRoute = require("./routes/story.js")
+
 
 
 const app = express()
